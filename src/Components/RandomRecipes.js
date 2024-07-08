@@ -8,6 +8,11 @@ function Home() {
   const [cardImages, setCardImages] = useState(Array(6).fill(spinnerGif));
   const [loading, setLoading] = useState(true);
   const hasFetchedData = useRef(false);
+  const [loadingRecipes, setLoadingRecipes] = useState('Getting some recipes for you...')
+
+  setTimeout(() => {
+    setLoadingRecipes('Check your network connection')
+  }, 5000);
 
   useEffect(() => {
     if (hasFetchedData.current) return;
@@ -53,13 +58,13 @@ function Home() {
       <div className='flex flex-col justify-center items-center'>
         <h1 className='md:text-6xl text-[2.3rem] text-center font-bold text-[#343434] mb-9'>Some recipes for you</h1>
         <div className="cards grid md:grid-cols-3 md:grid-rows-2 grid-rows-6 gap-[3.5rem] mt-10 h-[100%] md:h-[105vh]">
-          {loading ? (<div className='relative md:left-96 left-3 animate-pulse flex h-[43vh] justify-center items-center text-2xl text-[#343434]'>Getting some recipes for you...</div> ) : (meals.map((meal, index) => (
+          {loading ? (<div className='relative md:left-96 animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div> ) : (meals.map((meal, index) => (
             <Card
               key={meal.foodID}
               title={meal.title}
               dishArea={meal.dishArea}
               foodCategory={meal.foodCategory}
-              description={meal.description.slice(0, 200)}
+              description={meal.description.slice(0, 130)}
               cardImage={cardImages[index]}
               foodVideo={meal.foodVideo}
               foodRecipe={meal.foodRecipe}

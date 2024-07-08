@@ -4,13 +4,13 @@ import logo from './Images/logo.png'
 import {Link} from "react-router-dom";
 
 export default function Navbar() {
-  let [mobileNav, setMobileNav] = useState('100%')
+  let [mobileNav, setMobileNav] = useState('left-full');
   const handleToggleMenu = () => {
-    if (mobileNav === '100%') {
-      setMobileNav('0%')
+    if(mobileNav === 'left-full'){
+      setMobileNav('left-0')
     }
     else{
-      setMobileNav('100%')
+      setMobileNav('left-full')
     }
   }
   return (
@@ -37,10 +37,10 @@ export default function Navbar() {
           </div>
           <div id="hamburger" className="md:hidden flex fa fa-bars items-center text-xl"><img onClick={handleToggleMenu} className='w-7 h-7 invert' src={hamMenu} alt="" srcSet="" /></div>
           <div id="mobileNav"
-            className={`left-[${mobileNav}] z-10 md:hidden flex fixed items-center flex-col gap-8 pt-[3rem] px-4 text-xl uppercase bg-teal-600 h-[36vh] inset-0 top-[5rem] w-[100%] ease-in-out duration-500 cursor-pointer`}>
+            className={`${mobileNav} z-10 md:hidden flex fixed items-center flex-col gap-8 pt-[3rem] px-4 text-xl uppercase bg-teal-600 h-[36vh] inset-0 top-[5rem] w-[100%] ease-in-out duration-500 cursor-pointer`}>
             <Link onClick={handleToggleMenu} to='/'>Home</Link>
-            <Link onClick={handleToggleMenu} to='/'>Recipes</Link>
-            <Link onClick={handleToggleMenu} to='/'>API</Link>
+            <Link onClick={handleToggleMenu} to='/recipes'>Recipes</Link>
+            <Link onClick={handleToggleMenu} to='/api'>API</Link>
           </div>
         </div>
       </nav>
