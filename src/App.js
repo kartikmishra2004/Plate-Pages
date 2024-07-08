@@ -1,14 +1,26 @@
 import './App.css';
 import React from 'react'
 import Navbar from './Components/Navbar';
-import Card from './Components/Card';
+import Home from './Components/Home';
+import API from './Components/API';
+import Recipes from './Components/Recipes'
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 export default function App() {
-  document.body.style.backgroundColor = '#14b8a614';
   return (
     <div>
-      <Navbar/>
-      <Card/>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path='/' element={<Home />}></Route>
+          <Route exact path='/recipes' element={<Recipes />}></Route>
+          <Route exact path='/api' element={<API />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

@@ -1,25 +1,26 @@
 import React from 'react'
-import foodImage from './foodimage.jpg'
 
 function Card() {
     return (
-        <div>
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="/">
-                    <img className="rounded-t-lg" src={foodImage} alt="" />
-                </a>
-                <div className="p-5">
-                    <a href="/">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Veg Noodles</h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, debitis?</p>
-                    <a href="/" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#14b8a6] rounded-lg hover:bg-[#0d9488] active:bg-[#14b8a6]">
+        <>
+            <div class="relative flex w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                <div class="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-[#14b8a6] to-[#14b8a6]">
+                </div>
+                <div class="p-6">
+                    <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                        Hakka noodles
+                    </h5>
+                    <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc felis ligula.
+                    </p>
+                </div>
+                <div class="p-6 pt-0">
+                    <button data-ripple-light="true" type="button" class="select-none rounded-lg bg-[#14b8a6] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                         View recipe
-                    </a>
+                    </button>
                 </div>
             </div>
-
-        </div>
+        </>
     )
 }
 
