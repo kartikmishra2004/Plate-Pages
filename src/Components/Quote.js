@@ -1,5 +1,5 @@
 import React from 'react'
-import quote from './quote.svg'
+import quote from './Images/quote.svg'
 
 function Quote() {
   return (

@@ -1,14 +1,15 @@
 import About from './About'
 import Footer from './Footer'
-import fork from './fork.svg'
-import headerImage from './header-bg.png'
+import fork from './Images/fork.svg'
+import headerImage from './Images/header-bg.png'
 import ImproveSkills from './ImproveSkills'
 import Quote from './Quote'
+import RandomRecipes from './RandomRecipes'
 
 function Home() {
     document.title = 'Plate Pages - Home'
     return (
-        <div className='Home w-[100%] h-[150vh] flex flex-col items-center'>
+        <div className='Home w-[100%] bg-[#f7fffe] h-[250vh] flex flex-col items-center'>
             <div className="flex justify-center header-img mt-[5rem] w-[100%]">
                 <img className='w-[100vw]' src={headerImage} alt="..." srcSet="" />
             </div>
@@ -19,6 +20,7 @@ function Home() {
             <About />
             <ImproveSkills />
             <Quote />
+            <RandomRecipes/>
             <Footer />
         </div>
     )

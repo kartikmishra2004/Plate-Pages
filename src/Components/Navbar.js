@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import hamMenu from './ham-menu.svg'
-import logo from './logo.png'
+import hamMenu from './Images/ham-menu.svg'
+import logo from './Images/logo.png'
 import {
   Link,
 } from "react-router-dom";
