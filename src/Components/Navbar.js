@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import hamMenu from './Images/ham-menu.svg'
 import logo from './Images/logo.png'
-import {
-  Link,
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function Navbar() {
   let [mobileNav, setMobileNav] = useState('100%')
