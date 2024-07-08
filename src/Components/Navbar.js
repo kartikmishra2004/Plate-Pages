@@ -30,8 +30,8 @@ export default function Navbar() {
             Recipes
               <div className="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
             </Link>
-            <Link to='/api' className="group">
-              API
+            <Link to='/settings' className="group">
+            Settings
               <div className="w-0 group-hover:w-full h-0.5 bg-white ease-in-out duration-500"></div>
             </Link>
           </div>
@@ -40,7 +40,7 @@ export default function Navbar() {
             className={`${mobileNav} z-10 md:hidden flex fixed items-center flex-col gap-8 pt-[3rem] px-4 text-xl uppercase bg-teal-600 h-[36vh] inset-0 top-[5rem] w-[100%] ease-in-out duration-500 cursor-pointer`}>
             <Link onClick={handleToggleMenu} to='/'>Home</Link>
             <Link onClick={handleToggleMenu} to='/recipes'>Recipes</Link>
-            <Link onClick={handleToggleMenu} to='/api'>API</Link>
+            <Link onClick={handleToggleMenu} to='/settings'>Settings</Link>
           </div>
         </div>
       </nav>
