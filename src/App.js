@@ -12,6 +12,7 @@ import {
 import ScrollToTop from './Components/scrollToTop';
 
 export default function App() {
+  const APIkey = process.env.REACT_APP_FOOD_RECIPE_API;
   return (
     <div>
       <BrowserRouter>
@@ -19,7 +20,7 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route exact path='/' element={<Home />}></Route>
-          <Route exact path='/recipes' element={<Recipes />}></Route>
+          <Route exact path='/recipes' element={<Recipes APIkey={APIkey}/>}></Route>
           <Route exact path='/settings' element={<Settings />}></Route>
         </Routes>
       </BrowserRouter>

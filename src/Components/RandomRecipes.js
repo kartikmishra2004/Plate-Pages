@@ -3,7 +3,7 @@ import Card from './Card';
 import { Link } from 'react-router-dom';
 import spinnerGif from './Images/loading.gif';
 
-function Home() {
+function RandomRecipes(props) {
   const [meals, setMeals] = useState([]);
   const [cardImages, setCardImages] = useState(Array(6).fill(spinnerGif));
   const [loading, setLoading] = useState(true);
@@ -19,7 +19,7 @@ function Home() {
     hasFetchedData.current = true;
 
     async function fetchingData() {
-      const Base_URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
+      const Base_URL = `https://www.themealdb.com/api/json/v1/${props.APIkey}/random.php`;
       const promises = Array.from({ length: 6 }, () => fetch(Base_URL).then(response => response.json()));
       const mealData = await Promise.all(promises);
       setMeals(mealData.map(data => ({
@@ -35,7 +35,7 @@ function Home() {
       setLoading(false);
     }
     fetchingData();
-  }, []);
+  }, [props.APIkey]);
 
   useEffect(() => {
     if (meals.length === 0) return;
@@ -57,8 +57,8 @@ function Home() {
     <div>
       <div className='flex flex-col justify-center items-center'>
         <h1 className='md:text-6xl text-[2.3rem] text-center font-bold text-[#343434] mb-9'>Some recipes for you</h1>
-        <div className="cards pt-10 pb-16 overflow-hidden flex flex-wrap justify-center items-center gap-[3.5rem] mt-10 h-[100%] md:h-[105vh]">
-          {loading ? (<div className='relative md:left-96 animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div> ) : (meals.map((meal, index) => (
+        <div className="cards pt-10 pb-16 overflow-hidden flex flex-wrap justify-center items-center gap-[3.5rem] mt-10 h-[100%] md:h-[100%] md:w-[80vw]">
+          {loading ? (<div className='animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div> ) : (meals.map((meal, index) => (
             <Card
               key={meal.foodID}
               title={meal.title}
@@ -78,4 +78,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default RandomRecipes;

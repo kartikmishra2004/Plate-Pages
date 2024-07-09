@@ -3,7 +3,7 @@ import Card from './Card';
 import { Link } from 'react-router-dom';
 import spinnerGif from './Images/loading.gif';
 
-function Recipes() {
+function Recipes(props) {
   document.title = 'Plate Pages - Recipes';
   const [meals, setMeals] = useState([]);
   const [cardImages, setCardImages] = useState(Array(18).fill(spinnerGif));
@@ -20,7 +20,7 @@ function Recipes() {
     async function fetchingData() {
       setLoading(true);
       const promises = [];
-      const Base_URL = 'https://www.themealdb.com/api/json/v1/1/';
+      const Base_URL = `https://www.themealdb.com/api/json/v1/${props.APIkey}/`;
 
       if (search === null) {
         for (let i = 0; i < 18; i++) {
@@ -56,7 +56,7 @@ function Recipes() {
     }
 
     fetchingData();
-  }, [search]);
+  }, [search, props.APIkey]);
 
   useEffect(() => {
     if (meals.length === 0) return;

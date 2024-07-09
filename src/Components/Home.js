@@ -7,6 +7,7 @@ import Quote from './Quote'
 import RandomRecipes from './RandomRecipes'
 
 function Home() {
+    const APIkey = process.env.REACT_APP_FOOD_RECIPE_API;
     document.title = 'Plate Pages - Home'
     return (
         <div className='Home w-[100%] bg-[#f7fffe] h-[250vh] flex flex-col items-center'>
@@ -20,7 +21,7 @@ function Home() {
             <About />
             <ImproveSkills />
             <Quote />
-            <RandomRecipes/>
+            <RandomRecipes APIkey={APIkey}/>
             <Footer />
         </div>
     )
