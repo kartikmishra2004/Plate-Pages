@@ -10,34 +10,34 @@ function About() {
             <div className="img-gallery md:w-[40vw] w-[98vw] flex justify-center items-center">
                 <div className="grid grid-cols-4 md:grid-cols-4 gap-4">
                     <div className="grid gap-4">
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/784632/pexels-photo-784632.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/1132558/pexels-photo-1132558.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
                     </div>
                     <div className="grid gap-4">
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/718742/pexels-photo-718742.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/3338681/pexels-photo-3338681.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
                     </div>
                     <div className="grid gap-4">
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/1109197/pexels-photo-1109197.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
                     </div>
                     <div className="grid gap-4">
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
-                        <div className='hover:scale-110 hover:rotate-1 transition-all'>
+                        <div className='transition-all'>
                             <img className="h-auto max-w-full rounded-lg" src="https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         </div>
                     </div>

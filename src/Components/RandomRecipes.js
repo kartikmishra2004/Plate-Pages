@@ -57,7 +57,7 @@ function Home() {
     <div>
       <div className='flex flex-col justify-center items-center'>
         <h1 className='md:text-6xl text-[2.3rem] text-center font-bold text-[#343434] mb-9'>Some recipes for you</h1>
-        <div className="cards grid md:grid-cols-3 md:grid-rows-2 grid-rows-6 gap-[3.5rem] mt-10 h-[100%] md:h-[105vh]">
+        <div className="cards pt-10 pb-16 overflow-hidden flex flex-wrap justify-center items-center gap-[3.5rem] mt-10 h-[100%] md:h-[105vh]">
           {loading ? (<div className='relative md:left-96 animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div> ) : (meals.map((meal, index) => (
             <Card
               key={meal.foodID}

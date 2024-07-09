@@ -1,42 +1,62 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 import spinnerGif from './Images/loading.gif';
 
 function Recipes() {
-  document.title = 'Plate Pages - Recipes'
+  document.title = 'Plate Pages - Recipes';
   const [meals, setMeals] = useState([]);
   const [cardImages, setCardImages] = useState(Array(18).fill(spinnerGif));
   const [loading, setLoading] = useState(true);
-  const hasFetchedData = useRef(false);
-  const [loadingRecipes, setLoadingRecipes] = useState('Getting some recipes for you...')
-
-  setTimeout(() => {
-    setLoadingRecipes('Check your network connection')
-  }, 5000);
+  const [loadingRecipes, setLoadingRecipes] = useState('Getting some recipes for you...');
+  const [search, setSearch] = useState(null);
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
-    if (hasFetchedData.current) return;
-    hasFetchedData.current = true;
+    const timeout = setTimeout(() => {
+      setLoadingRecipes('Check your network connection');
+    }, 5000);
 
     async function fetchingData() {
-      const Base_URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
-      const promises = Array.from({ length: 18 }, () => fetch(Base_URL).then(response => response.json()));
-      const mealData = await Promise.all(promises);
-      setMeals(mealData.map(data => ({
-        title: data.meals[0].strMeal,
-        dishArea: data.meals[0].strArea,
-        foodCategory: data.meals[0].strCategory,
-        description: data.meals[0].strInstructions,
-        cardImage: data.meals[0].strMealThumb,
-        foodVideo: data.meals[0].strYoutube,
-        foodRecipe: data.meals[0].strSource,
-        foodID: data.meals[0].idMeal
-      })));
+      setLoading(true);
+      const promises = [];
+      const Base_URL = 'https://www.themealdb.com/api/json/v1/1/';
+
+      if (search === null) {
+        for (let i = 0; i < 18; i++) {
+          promises.push(fetch(`${Base_URL}random.php`).then(response => response.json()));
+        }
+      } else {
+        promises.push(fetch(`${Base_URL}${search}`).then(response => response.json()));
+      }
+
+      try {
+        const mealData = await Promise.all(promises);
+        const mealsArray = mealData.flatMap(data => data.meals || []);
+
+        // Filter out duplicate meals based on foodID
+        const uniqueMeals = Array.from(new Map(mealsArray.map(meal => [meal.idMeal, meal])).values());
+
+        setMeals(uniqueMeals.map(meal => ({
+          title: meal.strMeal,
+          dishArea: meal.strArea,
+          foodCategory: meal.strCategory,
+          description: meal.strInstructions,
+          cardImage: meal.strMealThumb,
+          foodVideo: meal.strYoutube,
+          foodRecipe: meal.strSource,
+          foodID: meal.idMeal
+        })));
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+
       setLoading(false);
+      clearTimeout(timeout);
     }
+
     fetchingData();
-  }, []);
+  }, [search]);
 
   useEffect(() => {
     if (meals.length === 0) return;
@@ -53,12 +73,20 @@ function Recipes() {
       };
     });
   }, [meals]);
+
+  const handleSearch = () => {
+    const searchInput = document.getElementById('default-search').value;
+    setSearch(`search.php?s=${searchInput}`);
+    setSearchInput(searchInput);
+    setLoadingRecipes(`Finding some '${searchInput}' recipes...`);
+  };
+
   return (
     <div className='mt-36'>
       <div className='flex flex-col justify-center items-center'>
         <h1 className='md:text-6xl text-[2.3rem] text-center font-bold text-[#343434] mb-9'>Explore delicious recipes!</h1>
 
-        <form className="md:w-[40vw] w-[90vw] mx-auto my-10">
+        <form className="md:w-[40vw] w-[90vw] mx-auto my-10" onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
           <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -66,24 +94,29 @@ function Recipes() {
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
               </svg>
             </div>
-            <input type="search" id="default-search" className="outline-0 block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-4 focus:ring-[#0886864f] focus:border-[#343434]" placeholder="Find Recipes You'll Love" required />
+            <input type="search" id="default-search" className="outline-0 block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-4 focus:ring-[#0886864f] focus:border-[#343434]" placeholder="Find Recipes You'll Love"/>
             <button type="submit" className="text-white absolute end-[0.5rem] bottom-[0.4rem] bg-[#14b8a6] hover:bg-[#089686] font-medium rounded-lg text-[1rem] px-4 py-2">Search</button>
           </div>
         </form>
 
-        <div className="cards grid md:grid-cols-3 md:grid-rows-6 grid-rows-18 md:gap-[4.5rem] gap-[1.5rem] mt-10 h-[100%] md:h-[325vh]">
-          {loading ? (<div className='relative md:left-96 animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div>) : (meals.map((meal, index) => (
-            <Card
-              key={meal.foodID}
-              title={meal.title}
-              dishArea={meal.dishArea}
-              foodCategory={meal.foodCategory}
-              description={meal.description.slice(0, 130)}
-              cardImage={cardImages[index]}
-              foodVideo={meal.foodVideo}
-              foodRecipe={meal.foodRecipe}
-            />
-          ))
+        <div className="cards pt-10 pb-16 overflow-hidden flex flex-wrap justify-center items-center md:gap-[4.5rem] gap-[3.5rem] mt-10 h-[100%] md:h-[100%]">
+          {loading ? (
+            <div className='flex animate-pulse justify-center h-[43vh] items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div>
+          ) : (
+            meals.length > 0 ? meals.map((meal, index) => (
+              <Card
+                key={meal.foodID}
+                title={meal.title}
+                dishArea={meal.dishArea}
+                foodCategory={meal.foodCategory}
+                description={meal.description.slice(0, 130)}
+                cardImage={cardImages[index]}
+                foodVideo={meal.foodVideo}
+                foodRecipe={meal.foodRecipe}
+              />
+            )) : (
+              <div className='text-center text-2xl text-[#343434]'>No result found for '{searchInput}'</div>
+            )
           )}
         </div>
         <div className="flex justify-center w-[100%] mt-12 text-lg md:mt-28 md:text-2xl tracking-wide">Search your favorite recipes at the top!</div>
@@ -93,4 +126,4 @@ function Recipes() {
   );
 }
 
-export default Recipes
+export default Recipes;
