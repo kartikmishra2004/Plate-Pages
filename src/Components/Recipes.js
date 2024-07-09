@@ -115,7 +115,7 @@ function Recipes(props) {
                 foodRecipe={meal.foodRecipe}
               />
             )) : (
-              <div className='text-center text-2xl text-[#343434]'>No result found for '{searchInput}'</div>
+              <div className='text-center text-2xl text-[#343434]'>No result found</div>
             )
           )}
         </div>

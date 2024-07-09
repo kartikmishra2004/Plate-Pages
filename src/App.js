@@ -10,6 +10,7 @@ import {
   Route
 } from "react-router-dom";
 import ScrollToTop from './Components/scrollToTop';
+import RecipePreview from './Components/RecipePreview';
 
 export default function App() {
   const APIkey = process.env.REACT_APP_FOOD_RECIPE_API;
@@ -22,6 +23,7 @@ export default function App() {
           <Route exact path='/' element={<Home />}></Route>
           <Route exact path='/recipes' element={<Recipes APIkey={APIkey}/>}></Route>
           <Route exact path='/settings' element={<Settings />}></Route>
+          <Route exact path='/recipes/preview' element={<RecipePreview />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
