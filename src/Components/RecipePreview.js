@@ -78,7 +78,7 @@ function RecipePreview(props) {
           <img className={`recipe-prev-img md:w-[364px] w-[295px] rounded-[10px] items-center ${displayImg}`} src={mealImage} alt="food-image" />
         </div>
         <div className="right gap-5 md:w-[50%] w-[100%] flex flex-col md:items-start items-center mt-10 md:mt-0">
-          <h1 className='md:text-5xl text-[2.5rem] font-bold text-[#343434]'>{mealName}</h1>
+          <h1 className='md:text-5xl text-center md:text-left text-[2.5rem] font-bold text-[#343434]'>{mealName}</h1>
           <p className='md:text-5xl text-[2.5rem] font-semibold text-[#343434]'>({mealArea} dish)</p>
           <p className='text-3xl font-semibold text-[#343434]'>Category : {mealCategory}</p>
           <div className="gap-2 py-6 w-[82%] flex items-center flex-col">

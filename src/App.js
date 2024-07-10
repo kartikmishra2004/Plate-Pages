@@ -13,8 +13,16 @@ import RecipePreview from './Components/RecipePreview';
 
 export default function App() {
   const APIkey = process.env.REACT_APP_FOOD_RECIPE_API;
+  window.addEventListener("load", () => {
+    const loader = document.querySelector(".loading-screen");
+    loader.classList.add("loading-screen-hidden");
+    loader.addEventListener("transitionend", () => {
+        document.body.removeChild("loading-screen");
+    })
+})
   return (
     <div>
+    <div className="loading-screen"></div>
       <BrowserRouter>
         <ScrollToTop />
         <Navbar />
