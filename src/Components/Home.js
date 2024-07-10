@@ -21,7 +21,7 @@ function Home() {
             <About />
             <ImproveSkills />
             <Quote />
-            <RandomRecipes APIkey={APIkey}/>
+            <RandomRecipes APIkey={APIkey} />
             <Footer />
         </div>
     )

@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react'
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
-import Settings from './Components/Settings';
 import Recipes from './Components/Recipes'
 import {
   BrowserRouter,
@@ -22,8 +21,7 @@ export default function App() {
         <Routes>
           <Route exact path='/' element={<Home />}></Route>
           <Route exact path='/recipes' element={<Recipes APIkey={APIkey}/>}></Route>
-          <Route exact path='/settings' element={<Settings />}></Route>
-          <Route exact path='/recipes/preview' element={<RecipePreview />}></Route>
+          <Route exact path='/:mealid' element={<RecipePreview APIkey={APIkey} />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -58,9 +58,10 @@ function RandomRecipes(props) {
       <div className='flex flex-col justify-center items-center'>
         <h1 className='md:text-6xl text-[2.3rem] text-center font-bold text-[#343434] mb-9'>Some recipes for you</h1>
         <div className="cards pt-10 pb-16 overflow-hidden flex flex-wrap justify-center items-center gap-[3.5rem] mt-10 h-[100%] md:h-[100%] md:w-[80vw]">
-          {loading ? (<div className='animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div> ) : (meals.map((meal, index) => (
+          {loading ? (<div className='animate-pulse flex h-[43vh] justify-center items-center text-center text-2xl text-[#343434]'>{loadingRecipes}</div>) : (meals.map((meal, index) => (
             <Card
-              key={meal.foodID}
+              key={`${meal.foodID}-${index}`}
+              foodID={meal.foodID}
               title={meal.title}
               dishArea={meal.dishArea}
               foodCategory={meal.foodCategory}

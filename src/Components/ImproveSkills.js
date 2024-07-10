@@ -12,7 +12,7 @@ function ImproveSkills() {
                     <strong>&#x2937;</strong> <strong>Video Tutorials</strong>: Visual demonstrations to bring recipes to life. <br />
                     <strong>&#x2937;</strong> <strong>Ingredient Insights</strong>: Learn about ingredients and their best uses. <br />
                     <strong>&#x2937;</strong> <strong>Skill-Building Challenges</strong>: Progressive tasks to boost your confidence.
-                    </p>
+                </p>
             </div>
         </div>
     )

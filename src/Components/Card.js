@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function Card(props) {
     const [displayBtn, setDisplayBtn] = useState('hidden');
@@ -18,7 +18,7 @@ function Card(props) {
                     <p className="card__description tracking-wider">Category: {props.foodCategory}</p>
                     <p className="card__description tracking-wider">{props.description}...</p>
                     <div className="btns flex flex-col justify-center">
-                        <Link target='_blank' rel='noreferrer' className={`text-white bg-[#14b8a6] hover:bg-[#089686] rounded-lg text-base px-5 py-2.5 me-2 text-center mb-2 mt-2`} to={props.foodRecipe}>View full recipe</Link>
+                        <NavLink className={`text-white bg-[#14b8a6] hover:bg-[#089686] rounded-lg text-base px-5 py-2.5 me-2 text-center mb-2 mt-2`} to={`/${props.foodID}`}>View full recipe</NavLink>
                         <Link target='_blank' rel='noreferrer' className={`text-[#14b8a6] bg-[#ffffff] border-2 border-[#14b8a6] rounded-lg text-base px-5 py-2.5 me-2 text-center`} to={props.foodVideo}>Watch video</Link>
                     </div>
                 </div>
